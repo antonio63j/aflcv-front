@@ -1,0 +1,36 @@
+<div [@routerTransition] class="login-page">
+    <div class="row justify-content-md-center">
+        <div class="col-md-6">
+            <img class="user-avatar" src="assets/images/logo.png" width="150px" />
+            <h1>CV - Antonio Fernández Lucena</h1>
+            <form role="form">
+                <!-- <div class="form-content">
+                    <div class="form-group">
+                        <input [(ngModel)]="usuario.username" name ="username"
+                        [placeholder]="'User' | translate"
+                            class="form-control input-underline input-lg" type="text" />
+                    </div>
+
+                    <div class="form-group">
+                        <input [(ngModel)]="usuario.password" name = "password"
+                        [placeholder]="'Password' | translate"
+                            class="form-control input-underline input-lg" type="password" />
+                    </div>
+                </div> -->
+                <div class="columna-botones">
+                    <a (click)="onLoginAdmin()" 
+                    title="Sesión con todas la funcionalidades, (ROLE_ADMIN y ROLE_USER)"
+                    class="btn rounded-btn">{{'Log in administrator mode' | translate}}</a>&nbsp;
+
+                    <a (click)="onLoginUser()" 
+                    title="Sesión con todas las funcionalidades salvo administraciones de roles y deletes, (ROLE_USUARIO)"
+                    class="btn rounded-btn">{{'Log in conventional user mode' | translate}}</a>&nbsp;
+                    
+                    <a (click)="onQueryMode()" 
+                    title="No hay autenticación, no se podrá actualizar la base de datos ni entrar en area de Herramientas"
+                        class="btn rounded-btn">{{ 'Log in query mode' | translate }}</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

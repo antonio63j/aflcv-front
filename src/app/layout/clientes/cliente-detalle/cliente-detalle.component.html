@@ -1,0 +1,20 @@
+<mat-card class="example-card">
+  <mat-card-header>
+    <!-- <div mat-card-avatar class="example-header-image" background-image= "http://localhost:8080/api/cliente/uploads/img/indra3.jpg"></div> -->
+    <img *ngIf="detalleCliente?.empresafoto" mat-card-avatar  src= "http://localhost:8080/api/cliente/uploads/img/{{detalleCliente.empresafoto}}">
+
+    <mat-card-title>{{detalleCliente.empresa}}</mat-card-title>
+    <mat-card-subtitle>{{detalleCliente.cliente}} - ({{detalleCliente.inicio | date:"MMM yyyy"}}, {{detalleCliente.fin | date:"MMM yyyy"}})</mat-card-subtitle>
+  </mat-card-header>
+  <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
+  <img *ngIf="detalleCliente?.clientefoto" mat-card-image src="http://localhost:8080/api/cliente/uploads/img/{{detalleCliente.clientefoto}}">
+
+  <mat-card-content>
+    <p>
+      Sector: {{detalleCliente.sector}}
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+  <ng-content></ng-content>
+  </mat-card-actions>
+</mat-card>

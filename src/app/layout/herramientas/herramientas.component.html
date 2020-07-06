@@ -1,0 +1,73 @@
+<div [@routerTransition]>
+  <app-page-header heading="{{'Tools' | translate}}" [icon]="'fa-wrench'"></app-page-header>
+  <!-- <app-page-header [heading]="'Courses'" [icon]="'fa-book'"></app-page-header> -->
+
+  <div class="row">
+    <!-- <div class="col col-xl-6 col-lg-12"> -->
+    <div class="col">
+      <div class="card mb-9 text-center">
+        <div class="card-header">
+          <h5>Lista de herramientas utilizadas tipo ({{tipoHerramienta}})</h5>
+        </div>
+        <div class="card-title">
+          <div *ngIf="!herramientas" class="alert alert-info">Espere un momento por favor, la primera carga puede tardar hasta
+            15 seg.
+          </div>
+          <div *ngIf="herramientas?.length==0" class="alert alert-info"> Lista vacía</div>
+        </div>
+        <div class="card-body table-responsive">
+          <table class="table table-bordered table-striped" *ngIf="herramientas?.length>0">
+            <thead>
+              <tr>
+                <th>herramienta</th>
+                <th>tipo</th>
+                <th>nivel</th>
+                <th>comentario</th>
+                <th><i class="fa fa-trash-o"></i></th>
+                <th><i class="fa fa-edit"></i></th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let herramienta of herramientas">
+                <td>{{ herramienta.nombre }}</td>
+                <!-- <td>{{ herramienta.tipo}}</td> -->
+                <td>{{getKeyView(herramienta.tipo)}}</td>
+                <td>{{ herramienta.nivel}}</td>
+                <td>{{ herramienta.comentario }}</td>
+                <!-- <td *ngIf = "authService.hasRole('ROLE_ADMIN')"> -->
+                <td>
+                  <button type="button" class="btn btn-danger btn-sm" (click)='delete(herramienta)'>
+                    <i class="fa fa-trash-o"></i></button>
+                </td>
+                <td>
+                  <button type="button" class="btn btn-primary btn-sm" (click)='update(herramienta)'>
+                    <i class="fa fa-edit"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div> <!-- card-body -->
+
+
+        <div class="card-footer text-muted">
+          <div class="row">
+            <div class="col">
+              <paginator-nav *ngIf="paginador" [paginador]="paginador" (messageToEmit)="getPagina($event)">
+              </paginator-nav>
+            </div>
+            <div class="col">
+              <!-- <button type="button" name="crearherramienta" (click)="crear()" class="btn btn-primary btn-sm">Crear
+                herramienta</button> -->
+
+              <button mat-raised-button color="primary" style="margin-right: 8px" (click)='crear()'>Crear herramienta</button>
+  
+            </div>
+          </div>
+        </div> <!-- card-footer -->
+      </div> <!-- card -->
+    </div>
+    <!--col -->
+  </div> <!-- row-->
+</div>

@@ -1,0 +1,6 @@
+<ul class="alert alert-danger" *ngIf="erroresValidacion?.length > 0">
+  <h6>Errores de validación detectados por el backend</h6>
+  <li *ngFor="let err of erroresValidacion">
+      {{err}}
+  </li>
+</ul>

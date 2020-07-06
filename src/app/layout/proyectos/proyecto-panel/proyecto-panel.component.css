@@ -1,0 +1,21 @@
+
+mat-expansion-panel-header {
+   margin-top: 14px;
+   border-color: rgba(243, 243, 248, 0.705);
+   border-radius: 15px;
+   border-style: solid;
+
+
+}
+
+mat-panel-title {
+    margin-top: 5px;
+    font-size: x-large;
+
+}
+
+mat-panel-description{
+    margin-bottom:12px;
+    font-size: small;
+
+}

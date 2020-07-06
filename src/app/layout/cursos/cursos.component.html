@@ -1,0 +1,70 @@
+<div [@routerTransition]>
+  <app-page-header heading="{{'Courses' | translate}}" [icon]="'fa-book'"></app-page-header>
+  <!-- <app-page-header [heading]="'Courses'" [icon]="'fa-book'"></app-page-header> -->
+
+  <div class="row">
+    <!-- <div class="col col-xl-6 col-lg-12"> -->
+    <div class="col">
+      <div class="card mb-9 text-center">
+        <div class="card-header">
+          <h5>Lista de cursos realizados</h5>
+        </div>
+        <div class="card-title">
+          <div *ngIf="!cursos" class="alert alert-info">Espere un momento por favor, la primera carga puede tardar hasta
+            15 seg.
+          </div>
+          <div *ngIf="cursos?.length==0" class="alert alert-info"> Lista vacía</div>
+        </div>
+        <div class="card-body table-responsive">
+          <table class="table table-bordered table-striped" *ngIf="cursos?.length>0">
+            <thead>
+              <tr>
+                <th>curso</th>
+                <th>f. inicio</th>
+                <th>f. fin</th>
+                <th>horas</th>
+                <th *ngIf="authService.hasRole('ROLE_USER')"><i class="fa fa-trash-o"></i></th>
+                <th><i class="fa fa-edit"></i></th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let curso of cursos">
+                <td>{{ curso.nombre }}</td>
+                <td>{{ curso.inicio | date:"MMM yyyy"}}</td>
+                <td>{{ curso.fin | date:"MMM yyyy"}}</td>
+                <td>{{ curso.horas }}</td>
+                <!-- <td *ngIf = "authService.hasRole('ROLE_ADMIN')"> -->
+                <td *ngIf="authService.hasRole('ROLE_USER')">
+                  <button  type="button" class="btn btn-danger btn-sm" (click)='delete(curso)'>
+                    <i class="fa fa-trash-o"></i></button>
+                </td>
+                <td>
+                  <button type="button" class="btn btn-primary btn-sm" (click)='update(curso)'>
+                    <i class="fa fa-edit"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div> <!-- card-body -->
+
+
+        <div class="card-footer text-muted">
+          <div class="row">
+            <div class="col">
+              <paginator-nav *ngIf="paginador" [paginador]="paginador" (messageToEmit)="getPagina($event)">
+              </paginator-nav>
+            </div>
+            <div class="col">
+              <!-- <button type="button" name="crearCurso" (click)="crear()" class="btn btn-primary btn-sm">Crear
+                curso</button> -->
+              <button mat-raised-button color="primary" style="margin-right: 8px" (click)='crear()'>Crear curso</button>  
+            </div>
+          </div>
+        </div> <!-- card-footer -->
+      </div> <!-- card -->
+    </div>
+    <!--col -->
+  </div> <!-- row-->
+</div>

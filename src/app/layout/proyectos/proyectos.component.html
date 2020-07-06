@@ -1,0 +1,67 @@
+
+<app-page-header heading="{{'Proyects' | translate}}" [icon]="'fa-archive'"></app-page-header>
+
+<div class="text-center">
+    <div class="card-header">
+      <h3>Proyectos</h3>
+      <h5 class="card-title">{{tituloBody}}</h5>
+    </div>
+    <div class="card-title">
+      <div *ngIf="!proyectos" class="alert alert-info">Espere un momento por favor, la primera carga puede tardar hasta 15 seg.</div> 
+      <div *ngIf="proyectos?.length==0" class="alert alert-info"> Lista vacía</div> 
+    </div>
+    <div class="card-body table-responsive">
+
+      <table class="table table-bordered table-striped xytable" *ngIf="proyectos?.length>0"> 
+        <thead>
+          <tr>
+            <th>nombre</th>
+            <th>f. inicio</th>
+            <th>f. fin</th>
+            <th>cliente</th>
+            <th *ngIf="authService.hasRole('ROLE_USER')"><i class="fa fa-trash-o"></i></th>
+            <th><i class="fa fa-edit"></i></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let proyecto of proyectos">
+            <td>{{ proyecto.nombre }}</td>
+            <td>{{ proyecto.inicio | date:"MMM yyyy"}}</td>
+            <td>{{ proyecto.fin | date:"MMM yyyy"}}</td>
+            <td *ngIf="proyecto.cliente"> {{ proyecto.cliente.cliente }}</td>
+            <td *ngIf="!proyecto.cliente"> --</td>      
+            <td *ngIf="authService.hasRole('ROLE_USER')"> 
+              <button type="button" class="btn btn-danger btn-sm" (click)='delete(proyecto)'>
+                <i class="fa fa-trash-o"></i></button>
+            </td>
+            <td>
+              <button type="button" class="btn btn-primary btn-sm" (click)='update(proyecto)'>
+                <i class="fa fa-edit"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div> <!-- card body -->
+      <div class="card-footer text-muted">
+        <div class="row">
+          <div class="col">
+            <paginator-nav *ngIf="paginador" [paginador]="paginador" (messageToEmit)="getPagina($event)">
+            </paginator-nav>
+          </div>
+          <div class="col">
+            <!-- <button type="button" name="crearherramienta" (click)="crear()" class="btn btn-primary btn-sm">Crear
+              herramienta</button> -->
+
+            <button *ngIf="authService.hasRole('ROLE_USER')" mat-raised-button color="primary" style="margin-right: 8px" (click)='crear()'>Crear proyecto</button>
+
+          </div>
+        </div>
+      </div> <!-- card-footer -->
+
+    <!-- <div class="card-footer text-muted">
+      <paginator-nav *ngIf = "paginador" [paginador] = "paginador" (messageToEmit)="getPagina($event)"></paginator-nav>
+    </div> -->
+
+
+  </div>

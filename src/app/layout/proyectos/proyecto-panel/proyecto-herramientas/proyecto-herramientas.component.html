@@ -1,0 +1,89 @@
+
+<mat-form-field class="example-75-width">
+  <mat-label>Filtro</mat-label>
+  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="texto a buscar">
+</mat-form-field>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+
+  <!-- Checkbox Column -->
+
+
+
+  <ng-container matColumnDef="select">
+    <th mat-header-cell *matHeaderCellDef>
+      <mat-checkbox (change)="$event ? masterToggle() : null"
+                    [checked]="selection.hasValue() && isAllSelected()"
+                    [indeterminate]="selection.hasValue() && !isAllSelected()"
+                    [disabled]="!authService.hasRole('ROLE_USER')"
+                    [aria-label]="checkboxLabel()">
+      </mat-checkbox>
+    </th>
+    <td mat-cell *matCellDef="let row">
+      <mat-checkbox (click)="$event.stopPropagation()"
+                    (change)="$event ? selection.toggle(row) : null"
+                    [checked]="selection.isSelected(row)"
+                    [aria-label]="checkboxLabel(row)"
+                    [disabled]="!authService.hasRole('ROLE_USER')"
+                    >
+      </mat-checkbox>
+    </td>
+  </ng-container>
+
+  <!-- Position Column -->
+  <!-- <ng-container matColumnDef="id">
+
+
+
+    <th mat-header-cell *matHeaderCellDef>Id </th>
+    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+  </ng-container> -->
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="nombre">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
+    <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>&nbsp;
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="tipo">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Tipo </th>
+    <td mat-cell *matCellDef="let element"> {{element.tipo}} </td>&nbsp;
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="nivel">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Nivel </th>
+    <td mat-cell *matCellDef="let element"> {{element.nivel}} </td>&nbsp;
+  </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="comentario">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Comentario </th>
+      <td mat-cell *matCellDef="let element"> {{element.comentario}} </td>&nbsp;
+    </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+      (click)="selection.toggle(row)">
+  </tr>
+
+
+  
+</table>
+
+<div class="center">
+  <mat-paginator [pageSizeOptions]="[10, 20, 40, 60, 100]"></mat-paginator>
+  <div>
+      <button *ngIf="authService.hasRole('ROLE_USER')" mat-raised-button color="primary" style="margin-right: 24px" (click)='update(proyecto)'
+         >Actualizar herramientas</button>
+
+      <button mat-raised-button color="primary" style="margin-right: 24px"
+          (click)="closeModal()">Salir</button>
+  </div>
+</div>
+
+<!-- <div class="center">
+  <button type="button" class="btn btn-outline-dark" (click)="update(proyecto)">Guardar</button>
+  <button type="button" class="btn btn-outline-dark" (click)="closeModal()">Cerrar</button>
+</div> -->

@@ -1,0 +1,80 @@
+
+            <button mat-raised-button color="primary" 
+            (click)="cerrarModal()">Cancelar</button>
+
+<mat-accordion>
+  <!-- ----------------------------- -->
+  <mat-expansion-panel>
+    <!-- (opened)="panelOpenState = true"
+                       (closed)="panelOpenState = false" -->
+
+    <mat-expansion-panel-header>
+      <div>
+        <mat-panel-title>
+          Datos del proyecto
+        </mat-panel-title>
+        <mat-panel-description>
+          Nombre del proyecto, fecha de inicio - fin y cliente
+        </mat-panel-description>
+      </div>
+    </mat-expansion-panel-header>
+    <br> <br>
+    <app-proyecto-form [proyecto]="proyecto" (messageToEmit)="gestionProyecto($event)"></app-proyecto-form>
+
+  </mat-expansion-panel>
+  <!-- ---------------------------------------------- -->
+
+  <!------------------------------- -->
+
+
+  <mat-expansion-panel>
+    <!-- (opened)="panelOpenState = true"
+                     (closed)="panelOpenState = false" -->
+
+    <mat-expansion-panel-header>
+      <div>
+        <mat-panel-title>
+          Detalle del proyecto
+        </mat-panel-title>
+        <mat-panel-description>
+          Descripción y mi actvidad en el proyecto
+        </mat-panel-description>
+      </div>
+    </mat-expansion-panel-header>
+    <br>
+    <app-proyecto-descripcion [proyecto]="proyecto" (messageToEmit)="gestionProyecto($event)">
+    </app-proyecto-descripcion>
+
+  </mat-expansion-panel>
+  <!-- //---------------------------------------------- -->
+
+  <mat-expansion-panel>
+    <!-- (opened)="panelOpenState = true"
+                       (closed)="panelOpenState = false" -->
+
+    <mat-expansion-panel-header>
+      <div>
+        <mat-panel-title>
+          Herramientas empledas
+        </mat-panel-title>
+        <mat-panel-description>
+          Frameworks, IDE, Lenguajes, ...
+        </mat-panel-description>
+      </div>
+    </mat-expansion-panel-header>
+    <br>
+    <app-proyecto-herramientas [proyecto]="proyecto" (messageToEmit)="gestionProyecto($event)">
+    </app-proyecto-herramientas>
+
+
+  </mat-expansion-panel>
+
+
+
+  <!-- //---------------------------------------------- -->
+
+</mat-accordion>
+
+<app-proyecto-estado-visor [erroresValidacion]="erroresValidacion">
+
+</app-proyecto-estado-visor>

@@ -1,0 +1,26 @@
+<div class="text-center">
+  <div class="card-header">
+    <h3>Clientes con los que he trabajado</h3>
+    <h5 class="card-title">{{tituloBody}}</h5>
+  </div>
+  <div class="card-title">
+    <div *ngIf="!clientes" class="alert alert-info">Espere un momento por favor, la primera carga puede tardar hasta 15 seg.</div> 
+    <div *ngIf="clientes?.length==0" class="alert alert-info"> Lista vacía</div> 
+  </div>
+  <div class="card-body table-responsive">
+
+
+    <app-cliente-detalle *ngFor="let cliente of clientes" [detalleCliente]="cliente">
+      <button class="btn btn-primary btn-sm" style="margin-right: 8px" [routerLink]="['/proyectos/idCliente', cliente.id, cliente.cliente]">Ver proyectos</button>
+      <button class="btn btn-primary btn-sm" style="margin-right: 8px" (click) = 'update(cliente)'>Editar cliente</button>
+
+      <!-- 
+      <button class="btn btn-primary btn-sm" style="margin-right: 8px" 
+              [routerLink]="['/proyectos/idCliente']" [queryParams] = "{idCliente: cliente.id, nombre: cliente.cliente}">Ver proyectos</button>
+
+       <button class="btn btn-primary btn-sm" style="margin-right: 8px" 
+              [routerLink]="['/proyectos/idCliente', cliente.id]">Editar cliente</button> -->
+
+    </app-cliente-detalle>
+  </div> <!-- card body -->
+</div>

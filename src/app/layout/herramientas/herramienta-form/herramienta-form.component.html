@@ -1,0 +1,117 @@
+<div class="card">
+
+    <!-- <div class="modal-header">
+        <h4 class="modal-title">{{title}}</h4>
+    </div> -->
+
+    <div class="modal-header">
+        <h4 class="modal-title">{{title}}</h4>
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="activeModal.close(true)">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <div class="modal-body" style="border:solid;color:rgb(132, 121, 204)">
+        <p>{{prompt}}</p>
+        <form #variableForm="ngForm" class="example-form">
+
+            <div class="form-group">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Nombre</mat-label>
+                    <input matInput class="form-control" id="nombre" name="nombre"
+                        placeholder="Nombre de la herramienta: framework, lenguaje, ..."
+                        [(ngModel)]="herramienta.nombre" #nombre="ngModel" minlength="3" required>
+                    <mat-hint>Campo obligatorio!!</mat-hint>
+                    <mat-error *ngIf="nombre.hasError('required')">
+                        Es <strong>necesario rellenar </strong> este campo
+                    </mat-error>
+                    <mat-error *ngIf="nombre.hasError('minlength')">
+                        El campo debe tener al menos 3 posiciones
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="form-group">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Tipo de la herramienta: framework, lenguaje, ...</mat-label>
+                    <mat-select class="form-control" id="tipo" name="tipo"
+                        [(ngModel)]="herramienta.tipo" #tipo="ngModel" required>
+                        <mat-option *ngFor="let tip of tipoHerramientas" [value]="tip.key">
+                            {{tip.keyView}}
+                        </mat-option>
+                    </mat-select>    
+                    <mat-hint>Campo obligatorio!!</mat-hint>
+                    <mat-error *ngIf="tipo.hasError('required')">
+                        Es <strong>necesario rellenar </strong> este campo
+                    </mat-error>
+                    <mat-error *ngIf="tipo.hasError('minlength')">
+                        El campo debe tener al menos 3 posiciones
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="form-group">
+                <mat-form-field class="example-75-width">
+                    <mat-label>Nivel de conocimiento</mat-label>
+                    <mat-select class="form-control" id="nivel" name="nivel" [(ngModel)]="herramienta.nivel"
+                        #nivel="ngModel" required>
+                        <mat-option *ngFor="let niv of niveles" [value]="niv.value">
+                            {{niv.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-hint>Campo obligatorio!!</mat-hint>
+                    <mat-error *ngIf="nivel.hasError('required')">
+                        Es <strong>necesario rellenar </strong> este campo
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="form-group">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Comentario</mat-label>
+                    <textarea matInput placeholder="Tienes hasta 80 posiciones para este campo" form-control
+                        [(ngModel)]="herramienta.comentario" name="comentario" maxlength="80" #comentario="ngModel">
+                    </textarea>
+                    <mat-error *ngIf="comentario.hasError('maxlength')">
+                        Es <strong>necesario rellenar </strong> este campo
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <br>
+            <ul class="alert alert-danger" *ngIf="erroresValidacion?.length > 0">
+                <h6>Errores de validación detectados en backend</h6>
+                <li *ngFor="let err of erroresValidacion">
+                    {{err}}
+                </li>
+            </ul>
+
+            <!-- <div class="form-group row">
+                <div class="col-sm-6">
+                    <button class="btn btn-primary" rol="button" style="margin:5px;" (click)='create(herramienta)'
+                        *ngIf="!herramienta.id else mostrarUpdate" [disabled]="!variableForm.form.valid">Crear</button>
+                    <ng-template #mostrarUpdate>
+                        <button class="btn btn-primary" rol="button" style="margin:5px;" (click)='update(herramienta)'
+                            [disabled]="!variableForm.form.valid">Actualizar</button>
+                    </ng-template>
+                    <button class="btn btn-primary" rol="button" style="margin:5px;"
+                        (click)="activeModal.close(true)">Cancelar</button>
+                </div>
+            </div> -->
+            <div>
+                <div>
+                    <button mat-raised-button color="primary" style="margin-right: 24px" (click)='create(herramienta)'
+                        *ngIf="!herramienta.id else mostrarUpdate" [disabled]="!variableForm.form.valid">Crear</button>
+                    <ng-template #mostrarUpdate>
+                        <button mat-raised-button color="primary" style="margin-right: 24px"
+                            (click)='update(herramienta)' [disabled]="!variableForm.form.valid">Actualiar</button>
+                    </ng-template>
+                    <button mat-raised-button color="primary" style="margin-right: 24px"
+                        (click)="activeModal.close(true)">Cancelar</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+</div>

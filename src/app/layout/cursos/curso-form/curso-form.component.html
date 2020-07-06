@@ -1,0 +1,79 @@
+<!-- <div class="container animation fadeIn"> -->
+
+
+<div class="card">
+    <div class="modal-header">
+        <h4 class="modal-title">{{title}}</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="activeModal.close(true)">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body" style="border:solid;color:rgb(132, 121, 204)">
+        <p>{{prompt}}</p>
+        <form #variableForm="ngForm">
+            <div class="form-group">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Nombre</mat-label>
+                    <input matInput class="form-control" id="nombre" name="nombre"
+                        placeholder="Nombre de la curso: framework, lenguaje, ..." [(ngModel)]="curso.nombre"
+                        #nombre="ngModel" minlength="3" maxlength="80" required>
+                    <mat-hint>Campo obligatorio!!</mat-hint>
+                    <mat-error *ngIf="nombre.hasError('required')">
+                        Es <strong>necesario rellenar </strong> este campo
+                    </mat-error>
+                    <mat-error *ngIf="nombre.hasError('minlength')">
+                        El campo debe tener al menos 3 posiciones
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <div>
+                <mat-form-field class="separacion">
+                    <mat-label>Fecha inicio</mat-label>
+                    <input matInput [matDatepicker]="myDatepicker1" class="form-control" [(ngModel)]="curso.inicio"
+                        name="inicio" required>
+                    <mat-hint>Campo obligatorio!!</mat-hint>
+                    <mat-datepicker-toggle matSuffix [for]="myDatepicker1"></mat-datepicker-toggle>
+                    <mat-datepicker #myDatepicker1></mat-datepicker>
+                </mat-form-field>
+
+                <mat-form-field class="separacion">
+                    <mat-label>Fecha fin</mat-label>
+                    <input matInput [matDatepicker]="myDatepicker2" class="form-control" [(ngModel)]="curso.fin"
+                        name="fin" required>
+                    <mat-hint>Campo obligatorio!!</mat-hint>
+                    <mat-datepicker-toggle matSuffix [for]="myDatepicker2"></mat-datepicker-toggle>
+                    <mat-datepicker #myDatepicker2></mat-datepicker>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input matInput type="number" class="form-control" name="horas" placeholder="Horas del curso"
+                        (change)="xxx()" [(ngModel)]="curso.horas" requerid>
+                    <mat-hint>Campo obligatorio!!</mat-hint>
+                </mat-form-field>
+
+                <ul class="alert alert-danger" *ngIf="erroresValidacion?.length > 0">
+                    <h6>Errores de validación detectados por el backend</h6>
+                    <li *ngFor="let err of erroresValidacion">
+                        {{err}}
+                    </li>
+                </ul>
+
+            </div>
+            <br>
+            <div class="center">
+                <div>
+                    <button mat-raised-button color="primary" style="margin-right: 24px" (click)='create(curso)'
+                        *ngIf="!curso.id else mostrarUpdate" [disabled]="!variableForm.form.valid">Crear</button>
+                    <ng-template #mostrarUpdate>
+                        <button mat-raised-button color="primary" style="margin-right: 24px" (click)='update(curso)'
+                            [disabled]="!variableForm.form.valid">Actualiar</button>
+                    </ng-template>
+                    <button mat-raised-button color="primary" style="margin-right: 24px"
+                        (click)="activeModal.close(true)">Cancelar</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>

@@ -1,0 +1,92 @@
+<form #variableForm="ngForm">
+    <div class="form-group">
+        <mat-form-field *ngIf="authService.hasRole('ROLE_USER')" class="example-75-width">
+            <mat-label>Nombre</mat-label>
+            <input matInput class="form-control" id="nombre2" name="nombre2" placeholder="Nombre del proyecto"
+                [(ngModel)]="proyecto.nombre" #nombre="ngModel" minlength="3" maxlength="80" required>
+            <mat-hint>Campo obligatorio!!</mat-hint>
+            <mat-error *ngIf="nombre.hasError('required')">
+                Es <strong>necesario rellenar </strong> este campo
+            </mat-error>
+            <mat-error *ngIf="nombre.hasError('minlength')">
+                El campo debe tener al menos 3 posiciones
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field *ngIf="!authService.hasRole('ROLE_USER')" class="example-75-width">
+            <mat-label>Nombre</mat-label>
+            <input matInput class="form-control" id="nombre" name="nombre" placeholder="Nombre del proyecto"
+                [(ngModel)]="proyecto.nombre" #nombre="ngModel" disabled>
+                <mat-hint>Campo obligatorio!!</mat-hint>
+        </mat-form-field>
+
+    </div>
+
+    <div>
+        <mat-form-field class="separacion">
+            <mat-label>Fecha inicio</mat-label>
+            <input *ngIf="authService.hasRole('ROLE_USER')" matInput [matDatepicker]="myDatepicker1" class="form-control" [(ngModel)]="proyecto.inicio"
+                name="inicio" required>
+            <input *ngIf="!authService.hasRole('ROLE_USER')" matInput [matDatepicker]="myDatepicker1" class="form-control" [(ngModel)]="proyecto.inicio"
+                name="inicio" disabled>
+            <mat-hint>Campo obligatorio!!</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="myDatepicker1"></mat-datepicker-toggle>
+            <mat-datepicker #myDatepicker1></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field class="separacion">
+            <mat-label>Fecha fin</mat-label>
+            <input *ngIf="authService.hasRole('ROLE_USER')" matInput [matDatepicker]="myDatepicker2" class="form-control" [(ngModel)]="proyecto.fin" name="fin"
+                required>
+            <input *ngIf="!authService.hasRole('ROLE_USER')"matInput [matDatepicker]="myDatepicker2" class="form-control" [(ngModel)]="proyecto.fin" name="fin"
+                disabled>    
+            <mat-hint>Campo obligatorio!!</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="myDatepicker2"></mat-datepicker-toggle>
+            <mat-datepicker #myDatepicker2></mat-datepicker>
+        </mat-form-field>
+    </div>
+    <br><br><br>
+    <div class="form-group">
+        <mat-form-field class="example-full-width">
+            <!-- <mat-select class="form-control" name="cliente" placeholder="cliente" (change)="xxx()" -->
+            <mat-select *ngIf="authService.hasRole('ROLE_USER')"
+                class="form-control" name="cliente" placeholder="cliente"
+                [compareWith]="objectComparisonFunction" [(ngModel)]="proyecto.cliente" required>
+                <mat-option *ngFor="let cli of clientesSelect" [value]="cli.idCliente">{{cli.idDescripcion}}
+                </mat-option>
+            </mat-select>
+            <mat-select *ngIf="!authService.hasRole('ROLE_USER')"
+               class="form-control" name="cliente" placeholder="cliente"
+               [compareWith]="objectComparisonFunction" [(ngModel)]="proyecto.cliente" disabled>
+               <mat-option *ngFor="let cli of clientesSelect" [value]="cli.idCliente">{{cli.idDescripcion}}
+               </mat-option>
+            </mat-select>
+            <mat-hint>Campo obligatorio!!</mat-hint>
+        </mat-form-field>
+    </div>
+     
+    <!-- <ul class="alert alert-danger" *ngIf="erroresValidacion?.length > 0">
+        <h6>Errores de validación detectados por el backend</h6>
+        <li *ngFor="let err of erroresValidacion">
+            {{err}}
+        </li>
+    </ul> -->
+
+
+
+    <br>
+    <div class="center">
+        <div>
+            <button mat-raised-button color="primary" style="margin-right: 24px" (click)='create(proyecto)'
+                *ngIf="!proyecto.id else mostrarUpdate" [disabled]="!variableForm.form.valid">Crear</button>
+            <ng-template #mostrarUpdate>
+                <button mat-raised-button color="primary" style="margin-right: 24px" (click)='update(proyecto)'
+                    [disabled]="!variableForm.form.valid">Actualiar</button>
+            </ng-template>
+
+            <button mat-raised-button color="primary" style="margin-right: 24px"
+                (click)="activeModal.close(true)">Salir</button>
+        </div>
+    </div>
+
+</form>

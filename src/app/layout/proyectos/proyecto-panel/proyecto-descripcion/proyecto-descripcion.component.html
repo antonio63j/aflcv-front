@@ -1,0 +1,41 @@
+<div class="container animation fadeIn">
+  <div class="header">
+    {{modalTitle}}
+  </div>
+
+    <p>{{modalPrompt}}</p>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm" *ngIf="proyecto">
+          <ul class="list-group text-dark mb-2">
+            <li *ngIf="proyecto.cliente" class="list-group-item active">Proyecto: {{proyecto.nombre}} -- Cliente: {{proyecto.cliente.cliente}}</li>
+            <li *ngIf="!proyecto.cliente" class="list-group-item active">Proyecto: {{proyecto.nombre}} -- Cliente: Sin cliente asociado</li>
+            <li class="list-group-item">
+              Entre {{ proyecto.inicio | date:"dd MMM yyyy"}} y
+              {{proyecto.fin | date:"dd MMM yyyy"}}
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="container">
+          <angular-editor [config]="config" [(ngModel)]="proyecto.descripcion">
+          </angular-editor>
+        </div>
+      </div>
+    </div> 
+    <div class="modal-footer">
+      <button  *ngIf ="authService.hasRole('ROLE_USER')" type="button" class="btn btn-outline-dark" (click)="update(proyecto)">Guardar</button>
+      <button type="button" class="btn btn-outline-dark" (click)="closeModal()">Cerrar</button>
+    </div>
+
+</div>
+
+<!-- <div class="container">
+  <header class="header">
+    <h1>AngularEditor</h1>
+    <p>Native WYSIWYG editor for Angular 6+</p>    
+  </header>
+    <angular-editor [(ngModel)]="htmlText"
+                    [config]="config">
+</angular-editor> -->

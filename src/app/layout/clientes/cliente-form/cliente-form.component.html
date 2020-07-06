@@ -1,0 +1,154 @@
+<div class="card">
+  <div class="modal-header">
+    <h4 class="modal-title">{{title}}</h4>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="activeModal.close(true)">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body" style="border:solid;color:rgb(132, 121, 204)">
+    <p>{{prompt}}</p>
+    <form #variableForm="ngForm">
+      <div class="form-group">
+        <mat-form-field *ngIf="authService.hasRole('ROLE_USER')" class="example-full-width">
+          <mat-label>Empresa</mat-label>
+          <input matInput class="form-control" id="empresa" name="empresa"
+            placeholder="Nombre de la empresa o de la empresa de servicios" [(ngModel)]="clienteFinal.empresa"
+            #empresa="ngModel" minlength="3" maxlength="80" required>
+          <mat-hint>Campo obligatorio!!</mat-hint>
+          <mat-error *ngIf="empresa.hasError('required')">
+            Es <strong>necesario rellenar </strong> este campo
+          </mat-error>
+          <mat-error *ngIf="empresa.hasError('minlength')">
+            El campo debe tener al menos 3 posiciones
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field *ngIf="!authService.hasRole('ROLE_USER')" class="example-full-width">
+          <mat-label>Empresa</mat-label>
+          <input matInput class="form-control" id="empresa" name="empresa"
+            placeholder="Nombre de la empresa o de la empresa de servicios" [(ngModel)]="clienteFinal.empresa"
+            #empresa="ngModel" disabled>
+          <mat-hint>Campo obligatorio!!</mat-hint>
+        </mat-form-field>
+
+      </div>
+      <div class="form-group">
+        <mat-form-field *ngIf="authService.hasRole('ROLE_USER')" class="example-full-width">
+          <mat-label>Cliente</mat-label>
+          <input matInput class="form-control" id="cliente" name="cliente"
+            placeholder="Nombre de la empresa o del cliente de la empresa de servicios" [(ngModel)]="clienteFinal.cliente"
+            #cliente="ngModel" minlength="3" maxlength="80" required>
+          <mat-hint>Campo obligatorio!!</mat-hint>
+          <mat-error *ngIf="cliente.hasError('required')">
+            Es <strong>necesario rellenar </strong> este campo
+          </mat-error>
+          <mat-error *ngIf="cliente.hasError('minlength')">
+            El campo debe tener al menos 3 posiciones
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field *ngIf="!authService.hasRole('ROLE_USER')" class="example-full-width">
+          <mat-label>Cliente</mat-label>
+          <input matInput class="form-control" id="cliente" name="cliente"
+            placeholder="Nombre de la empresa o del cliente de la empresa de servicios" [(ngModel)]="clienteFinal.cliente"
+            #cliente="ngModel" disabled>
+          <mat-hint>Campo obligatorio!!</mat-hint>
+        </mat-form-field>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field  *ngIf="authService.hasRole('ROLE_USER')" class="example-full-width">
+          <mat-label>Sector de actividad</mat-label>
+          <input matInput class="form-control" id="sector" name="sector"
+            placeholder="Nombre de la empresa o del sector de la empresa de servicios" [(ngModel)]="clienteFinal.sector"
+            #sector="ngModel" minlength="3" maxlength="80" required>
+          <mat-hint>Campo obligatorio!!</mat-hint>
+          <mat-error *ngIf="sector.hasError('required')">
+            Es <strong>necesario rellenar </strong> este campo
+          </mat-error>
+          <mat-error *ngIf="sector.hasError('minlength')">
+            El campo debe tener al menos 3 posiciones
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field  *ngIf="!authService.hasRole('ROLE_USER')" class="example-full-width">
+          <mat-label>Sector de actividad</mat-label>
+          <input matInput class="form-control" id="sector" name="sector"
+            placeholder="Nombre de la empresa o del sector de la empresa de servicios" [(ngModel)]="clienteFinal.sector"
+            #sector="ngModel" disabled>
+          <mat-hint>Campo obligatorio!!</mat-hint>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field>
+          <mat-label>Fecha inicio</mat-label>
+          <input  *ngIf="authService.hasRole('ROLE_USER')"  matInput [matDatepicker]="myDatepicker1" class="form-control" 
+          [(ngModel)]="clienteFinal.inicio" name="inicio" required>
+          <input  *ngIf="!authService.hasRole('ROLE_USER')" matInput [matDatepicker]="myDatepicker1" class="form-control" 
+          [(ngModel)]="clienteFinal.inicio" name="inicio" disabled>
+          <mat-hint>Campo obligatorio!!</mat-hint>
+          <mat-datepicker-toggle matSuffix [for]="myDatepicker1"></mat-datepicker-toggle>
+          <mat-datepicker #myDatepicker1></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Fecha fin</mat-label>
+          <input *ngIf="authService.hasRole('ROLE_USER')" matInput [matDatepicker]="myDatepicker2" class="form-control" 
+          [(ngModel)]="clienteFinal.fin" name="fin" required>
+          <input *ngIf="!authService.hasRole('ROLE_USER')" matInput [matDatepicker]="myDatepicker2" class="form-control" 
+          [(ngModel)]="clienteFinal.fin" name="fin" disabled>
+          <mat-hint>Campo obligatorio!!</mat-hint>
+          <mat-datepicker-toggle matSuffix [for]="myDatepicker2"></mat-datepicker-toggle>
+          <mat-datepicker #myDatepicker2></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+          
+          <div class="container" style="margin-top: 30px;">
+            <label style="color: grey;">Actividad</label>
+            <angular-editor id="editor1" name="actividad" [config]="configActividad" [(ngModel)]="clienteFinal.actividad">
+            </angular-editor>
+          </div>
+
+
+          <div class="container" style="margin-top: 30px">
+            <label style="color: grey;">Experiencia</label>
+            <angular-editor id="editor2" name="experiencia" [config]="configExperiencia" [(ngModel)]="clienteFinal.experiencia">
+            </angular-editor>
+          </div>
+
+
+        <div>
+          <ul class="alert alert-danger" *ngIf="erroresValidacion?.length > 0">
+            <h6>Errores de validación detectados por el backend</h6>
+            <li *ngFor="let err of erroresValidacion">
+              {{err}}
+            </li>
+          </ul>
+
+        </div>
+
+
+
+
+      <br>
+      <div class="center">
+        <div *ngIf="authService.hasRole('ROLE_USER')" class="box2">
+          <button  mat-raised-button color="primary" style="margin-right: 24px" (click)='create(clienteFinal)'
+            *ngIf="!clienteFinal.id else mostrarUpdate" [disabled]="!variableForm.form.valid">Crear</button>
+          <ng-template #mostrarUpdate>
+            <button mat-raised-button color="primary" style="margin-right: 24px" (click)='update(clienteFinal)'
+              [disabled]="!variableForm.form.valid">Actualiar</button>
+          </ng-template>
+
+        </div>
+        <div  class="box2">
+          <button mat-raised-button color="primary" style="margin-right: 24px"
+            (click)="activeModal.close(true)">Salir</button>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>
