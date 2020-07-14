@@ -44,7 +44,7 @@ export class HerramientasComponent implements OnInit, OnDestroy {
     public paginador: any;
     private subscriptionParams$: Subscription = null;
     // private subscriptionEvents$: Subscription = null;
-    private tipoHerramienta: string = null;
+    public tipoHerramienta: string = null;
     private proyectoNombre: string = null;
     private cabecera: string = null;
 

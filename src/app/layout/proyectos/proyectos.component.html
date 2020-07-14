@@ -36,7 +36,8 @@
             </td>
             <td>
               <button type="button" class="btn btn-primary btn-sm" (click)='update(proyecto)'>
-                <i class="fa fa-edit"></i>
+                <i *ngIf="authService.hasRole('ROLE_USER')" class="fa fa-edit"></i>
+                <i *ngIf="!authService.hasRole('ROLE_USER')" class="fa fa-eye"></i>
               </button>
             </td>
           </tr>

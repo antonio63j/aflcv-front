@@ -13,6 +13,7 @@ import swal from 'sweetalert2';
   styleUrls: ['./proyecto-panel.component.css']
 })
 export class ProyectoPanelComponent implements OnInit {
+  public proyecto: Proyecto;
   private observ$: Subscription = null;
   private unsubscribe$ = new Subject();
   public erroresValidacion: string[];

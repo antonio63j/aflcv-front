@@ -11,9 +11,13 @@
 
 
     <app-cliente-detalle *ngFor="let cliente of clientes" [detalleCliente]="cliente">
-      <button class="btn btn-primary btn-sm" style="margin-right: 8px" [routerLink]="['/proyectos/idCliente', cliente.id, cliente.cliente]">Ver proyectos</button>
-      <button class="btn btn-primary btn-sm" style="margin-right: 8px" (click) = 'update(cliente)'>Editar cliente</button>
+      <button class="btn btn-primary btn-sm" style="margin-right: 8px" 
+      [routerLink]="['/proyectos/idCliente', cliente.id, cliente.cliente]">{{'Projects' |translate}}</button>
 
+      <button *ngIf="authService.hasRole('ROLE_USER')" class="btn btn-primary btn-sm" 
+        style="margin-right: 8px" (click) = 'update(cliente)'>{{'Edit Customer' |translate}}</button>
+      <button *ngIf="!authService.hasRole('ROLE_USER')" class="btn btn-primary btn-sm"
+        style="margin-right: 8px" (click) = 'update(cliente)'>{{'Show Customer' |translate}}</button>
       <!-- 
       <button class="btn btn-primary btn-sm" style="margin-right: 8px" 
               [routerLink]="['/proyectos/idCliente']" [queryParams] = "{idCliente: cliente.id, nombre: cliente.cliente}">Ver proyectos</button>

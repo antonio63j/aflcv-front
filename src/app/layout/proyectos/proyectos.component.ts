@@ -42,7 +42,7 @@ export class ProyectosComponent implements OnInit, OnDestroy {
   private subscriptionParams$: Subscription = null;
   private subscriptionEvents$: Subscription = null;
   private cliente: string;
-  private tituloBody: string;
+  public tituloBody: string;
   private clienteNombre: string;
   private pagina: number;
 
@@ -52,7 +52,7 @@ export class ProyectosComponent implements OnInit, OnDestroy {
     private router: Router,
     private modalConModeloService: ModalConModeloService,
     private modalService: ModalService,
-    private authService: AuthService
+    public authService: AuthService
   ) {
   }
 

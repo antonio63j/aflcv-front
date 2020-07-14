@@ -33,7 +33,7 @@ interface Nivel {
   // providers: [herramientasService]
 })
 export class HerramientaFormComponent implements OnInit, OnDestroy {
-  public titulo = 'Alta / Modificación de Clientes';
+  public titulo = 'Alta / Modificación de Herramientas';
   public herramienta: Herramienta = new Herramienta();
   private subscriptionParams$: Subscription = null;
   private observ$: Subscription = null;

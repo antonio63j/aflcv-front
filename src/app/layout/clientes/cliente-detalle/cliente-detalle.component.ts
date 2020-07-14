@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { environment } from '../../../../environments/environment';
+
 
 @Component({
   selector: 'app-cliente-detalle',
@@ -8,6 +10,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ClienteDetalleComponent implements OnInit {
 
   @Input() detalleCliente: any;
+  host: string = environment.urlEndPoint;
   constructor() { }
 
   ngOnInit() {

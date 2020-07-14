@@ -1,4 +1,4 @@
 export const environment = {
     production: true,
-    urlEndPoint: 'https://micv-postgres.herokuapp.com',
+    urlEndPoint: 'https://aflcv-back.herokuapp.com',
 };

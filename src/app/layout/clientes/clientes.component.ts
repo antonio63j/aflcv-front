@@ -7,6 +7,7 @@ import { ModalService } from '../../shared/services/modal.service';
 import { ClientesService } from './clientes.service';
 import { ModalConModeloService } from '../../shared/services/modal-con-modelo.service';
 import { ClienteFormComponent } from './cliente-form/cliente-form.component';
+import { AuthService } from '../../usuarios/auth.service';
 
 import { Cliente } from '../../shared/modelos/cliente';
 
@@ -27,7 +28,7 @@ export class ClientesComponent implements OnInit, OnDestroy {
   private unsubscribe$ = new Subject();
   private subscriptionParams$: Subscription = null;
 
-  private tituloBody: string;
+  public tituloBody: string;
   private clienteNombre: string;
   private pagina: number;
 
@@ -37,6 +38,7 @@ export class ClientesComponent implements OnInit, OnDestroy {
     private modalService: ModalService,
     private modalConModeloService: ModalConModeloService,
     private router: Router,
+    public authService: AuthService
   ) {
   }
 

@@ -1,65 +1,155 @@
-# SB Admin rewritten in Angular9 and Bootstrap 4
+# Lado front de mi curriculum Vitae con Angular 9 y Bootstrap 4
 
-Simple Dashboard Admin App built using Angular 9 and Bootstrap 4
+Este proyecto web ofrece mi curriculum (Antonio Fernández Lucena). Tiene tres perfiles para navegar:
 
-This project is a port of the famous Free Admin Bootstrap Theme [SB Admin v8.0](http://startbootstrap.com/template-overviews/sb-admin-2/) to Angular9 Theme.
+- Como administrador, con todas la funcionalidades
+- Como usuario genérico, que puede actulizar pero no eliminar ni entrar en el área de herramientas ni en la de administración de perfiles.
+- Sin log in, modo consulta
 
-Powered by [StartAngular](http://startangular.com/) & [StrapUI](http://strapui.com/)
+## [Demo](https://aflcv-front.web.app)
 
-## [Demo](http://rawgit.com/start-angular/SB-Admin-BS4-Angular-6/master/dist/)
+Para una demo completa, tendríamos que instalar el proyecto java aflcv-back, que podemos [descargar](https://github.com/antonio63j/aflcv-back.git) 
 
-## [SB Admin Material version](https://github.com/start-javascript/sb-admin-material)
+### Requisitos
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.2.
-
-### Introduction
-
-Provides fast, reliable and extensible starter for the development of Angular projects.
-
-`sb-admin-bs4-angular9` provides the following features:
-
--   Developed using boostrap-v6.0.0
--   angular-v9.0.2
--   angular/cli-v9.0.2
--   [ng-bootstrap-v6.0.0](https://github.com/ng-bootstrap/)
--   [ngx-translate-v12.1.1](https://github.com/ngx-translate)
--   Following the best practices.
--   Ahead-of-Time compilation support.
--   Official Angular i18n support.
--   Production and development builds.
--   Tree-Shaking production builds.
-
-### How to start
-
-**Note** that this seed project requires **node >=v8.9.0 and npm >=4**.
-
-In order to start the project use:
+###### Este proyecto corre correctamente con:
 
 ```bash
-$ git clone https://github.com/start-angular/SB-Admin-BS4-Angular-8.git
-$ cd SB-Admin-BS4-Angular-8
-# install the project's dependencies
-$ npm install
-# watches your files and uses livereload by default run `npm start` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-$ npm start
-# prod build, will output the production application in `dist`
-# the produced code can be deployed (rsynced) to a remote server
-$ npm run build
+OS: win32 x64
+
+node 14.2.0
+
+npm 6.9.0
+
+Angular CLI: 9.1.1
+
+Angular: 9.1.1
+
+@angular-devkit/architect 0.901.4
+
+@angular-devkit/build-angular 0.901.4
+
+@angular-devkit/build-optimizer 0.901.4
+
+@angular-devkit/build-webpack 0.901.4
+
+@angular-devkit/core 9.1.4
+
+@angular-devkit/schematics 9.1.1
+
+@angular/cdk 9.2.2
+
+@angular/material 9.2.2
+
+@ngtools/webpack 9.1.4
+
+@schematics/angular 9.1.1
+
+@schematics/update 0.901.1
+
+rxjs 6.5.5
+
+typescript 3.8.3
+
+webpack 4.42.0
+
+
 ```
 
-### Code scaffolding
+### Instalación
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive/pipe/service/class/module`.
+```bash
+$ git clone https://github.com/antonio63j/aflcv-front.git
+$ cd aflcv-front
 
-### Running unit tests
+# instalacion de dependencias
+$ npm install
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+# Ejecutar en local en el puerto 4200 (con angular-cli en local)
+$ npm run -- ng serve -o [--port 4200]
 
-### Running end-to-end tests
+# Para crear la version de producción en el directorio 'dist', ver # package.json 
+$ npm run prod 
+# también
+$ npm run -- ng build --prod --base-href="./"
+```
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
 
-### Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+### Deploy en Firebase
+
+- Crear proyecto aflcv-front en Firebase
+  
+  
+
+- Instalar las herramientas Firebase
+  
+  **npm install -g firebase-tools**
+  
+  
+
+- Iniciar sesión en Firebase
+  
+  **firebase login**
+  
+  
+
+- Preparación del proyecto
+  
+  **firebase init**
+  
+  Solo se necesita hosting y cuando pregunta por cuál sería el directorio público, ponemos 'dist' 
+  
+  
+
+- Una vez generado 'dist', hacemos deploy
+  
+  **firebase deploy**
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

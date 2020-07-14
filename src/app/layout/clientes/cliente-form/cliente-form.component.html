@@ -1,12 +1,12 @@
 <div class="card">
   <div class="modal-header">
-    <h4 class="modal-title">{{title}}</h4>
+    <h4 class="modal-title">{{titulo}}</h4>
     <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="activeModal.close(true)">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="modal-body" style="border:solid;color:rgb(132, 121, 204)">
-    <p>{{prompt}}</p>
+    <!-- <p>{{prompt}}</p> -->
     <form #variableForm="ngForm">
       <div class="form-group">
         <mat-form-field *ngIf="authService.hasRole('ROLE_USER')" class="example-full-width">
