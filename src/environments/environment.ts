@@ -5,7 +5,7 @@
 export const environment = {
     production: false,
     //
-    urlEndPoint: 'https://ec2-18-157-252-11.eu-central-1.compute.amazonaws.com:8080'
+    urlEndPoint: 'http://ec2-18-157-252-11.eu-central-1.compute.amazonaws.com:8080'
 };
 
 /*
