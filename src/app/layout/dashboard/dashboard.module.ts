@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { NgbAlertModule, NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 import { StatModule } from '../../shared';
-import { ChatComponent, NotificationComponent, TimelineComponent } from './components';
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
@@ -13,17 +12,13 @@ import { ModalFormModule } from '../../shared/modules/modal-form/modal-form.modu
         CommonModule, 
         NgbCarouselModule,
         ModalFormModule,
- 
-        NgbAlertModule, 
-        DashboardRoutingModule, 
+        NgbAlertModule,
+        DashboardRoutingModule,
         StatModule
     ],
 
     declarations: [
-        DashboardComponent, 
-        TimelineComponent, 
-        NotificationComponent, 
-        ChatComponent
+        DashboardComponent
     ]
 })
 export class DashboardModule {}
